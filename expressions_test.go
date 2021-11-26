@@ -112,6 +112,10 @@ func (ges *goquExpressionsSuite) TestSUM() {
 	ges.Equal(exp.NewSQLFunctionExpression("SUM", goqu.I("col")), goqu.SUM("col"))
 }
 
+func (ges *goquExpressionsSuite) TestLATEST() {
+	ges.Equal(exp.NewSQLFunctionExpression("LATEST", goqu.I("col")), goqu.LATEST("col"))
+}
+
 func (ges *goquExpressionsSuite) TestCOALESCE() {
 	ges.Equal(exp.NewSQLFunctionExpression("COALESCE", goqu.I("col"), nil), goqu.COALESCE(goqu.I("col"), nil))
 }

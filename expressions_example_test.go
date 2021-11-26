@@ -1237,6 +1237,26 @@ func ExampleSUM_havingClause() {
 	// SELECT SUM("a") AS "SUM" FROM "test" GROUP BY "a" HAVING (SUM("a") > ?) [10]
 }
 
+func ExampleLATEST() {
+	ds := goqu.From("test").Select(goqu.LATEST("col"))
+	sql, args, _ := ds.ToSQL()
+	fmt.Println(sql, args)
+
+	sql, args, _ = ds.Prepared(true).ToSQL()
+	fmt.Println(sql, args)
+	// Output:
+	// SELECT LATEST("col") FROM "test" []
+	// SELECT LATEST("col") FROM "test" []
+}
+
+func ExampleLATEST_as() {
+	sql, _, _ := goqu.From("test").Select(goqu.LATEST("a").As("a")).ToSQL()
+	fmt.Println(sql)
+
+	// Output:
+	// SELECT LATEST("a") AS "a" FROM "test"
+}
+
 func ExampleStar() {
 	ds := goqu.From("test").Select(goqu.Star())
 

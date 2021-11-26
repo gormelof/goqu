@@ -147,6 +147,11 @@ func LAST(col interface{}) exp.SQLFunctionExpression { return newIdentifierFunc(
 //   SUM(I("a")) -> SUM("a")
 func SUM(col interface{}) exp.SQLFunctionExpression { return newIdentifierFunc("SUM", true, col) }
 
+// Creates a new LATEST sql function
+//   LATEST("a") -> LATEST("a")
+//   LATEST(I("a")) -> LATEST("a")
+func LATEST(col interface{}) exp.SQLFunctionExpression { return newIdentifierFunc("LATEST", true, col) }
+
 // Creates a new COALESCE sql function
 //   COALESCE(I("a"), "a") -> COALESCE("a", 'a')
 //   COALESCE(I("a"), I("b"), nil) -> COALESCE("a", "b", NULL)
